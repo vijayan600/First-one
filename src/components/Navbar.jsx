@@ -36,7 +36,7 @@ function Navbar() {
           <span className="nav-title">SHA</span>
           {/* S & H Association text appears when scrolled */}
           <span className={`nav-association-text ${scrolled ? '' : 'hidden'}`}>
-            S & H Association
+            Science & Humanities Association
           </span>
         </div>
 
@@ -61,7 +61,7 @@ function Navbar() {
         </button>
 
         <div className="menu-header">
-          <h2>S & H ASSOCIATION</h2>
+          <h2>Science & Humanities Association</h2>
         </div>
 
         <nav className="menu-links">
@@ -83,7 +83,7 @@ function Navbar() {
         </nav>
 
         <div className="menu-footer">
-          <p>© 2024 S & H Association</p>
+          <p>© 2026 Science & Humanities Association</p>
         </div>
       </aside>
     </>
