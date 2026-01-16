@@ -1,0 +1,346 @@
+/* =========================
+   ENSURE BODY AND HTML ARE SCROLLABLE
+========================= */
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  height: auto;
+}
+
+/* =========================
+   EVENT DETAILS PAGE - SCROLLABLE
+========================= */
+
+.event-details-page {
+  min-height: 100vh;
+  height: auto;
+  background: linear-gradient(180deg, #1a0b2e 0%, #0a0118 100%);
+  color: #ffffff;
+  padding: 20px;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  display: inline-block;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+@media (min-width: 769px) {
+  .back-button {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    margin-bottom: 0;
+  }
+}
+
+/* =========================
+   DESKTOP LAYOUT - SIDE BY SIDE
+========================= */
+
+@media (min-width: 769px) {
+  .event-details-page {
+    padding: 40px;
+    padding-top: 100px; /* SPACE FOR BACK BUTTON */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .event-details-content-wrapper {
+    display: grid;
+    grid-template-columns: 400px 1fr; /* FIXED SMALLER WIDTH FOR POSTER */
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center; /* VERTICALLY CENTER BOTH COLUMNS */
+  }
+
+  .event-poster-container {
+    margin: 0;
+    max-width: 400px; /* SMALLER POSTER SIZE */
+  }
+
+  .event-details-info {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* =========================
+   EVENT POSTER - FULL VIEW WITHOUT CROPPING
+========================= */
+
+.event-poster-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.event-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* =========================
+   CATEGORY BADGE
+========================= */
+
+.event-category-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #d946ef, #8b5cf6);
+  color: #ffffff;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
+}
+
+/* =========================
+   EVENT TITLE
+========================= */
+
+.event-details-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  background: linear-gradient(90deg, #ffffff, #d946ef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 769px) {
+  .event-details-title {
+    font-size: 36px;
+  }
+}
+
+/* =========================
+   META TAGS
+========================= */
+
+.event-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.meta-tag {
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   ABOUT EVENT SECTION
+========================= */
+
+.about-event-section {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.about-heading {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+@media (min-width: 769px) {
+  .about-heading {
+    font-size: 26px;
+  }
+}
+
+.about-heading .highlight {
+  color: #ec4899;
+}
+
+.event-description {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+@media (min-width: 769px) {
+  .event-description {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   REGISTER BUTTON
+========================= */
+
+.register-button {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto 40px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.register-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+}
+
+.register-button:active {
+  transform: translateY(-1px);
+}
+
+@media (min-width: 769px) {
+  .register-button {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* =========================
+   ERROR STATE
+========================= */
+
+.event-details-error {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #1a0b2e 0%, #0a0118 100%);
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.event-details-error h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.event-details-error button {
+  background: linear-gradient(135deg, #8b5cf6, #d946ef);
+  color: #ffffff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.event-details-error button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.5);
+}
+
+/* =========================
+   RESPONSIVE - MOBILE/TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .event-details-page {
+    padding: 15px;
+    padding-bottom: 50px;
+  }
+
+  .event-details-title {
+    font-size: 24px;
+  }
+
+  .about-heading {
+    font-size: 20px;
+  }
+
+  .event-description {
+    font-size: 14px;
+  }
+
+  .register-button {
+    font-size: 14px;
+    padding: 14px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-details-title {
+    font-size: 22px;
+  }
+
+  .meta-tag {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .about-event-section {
+    padding: 20px;
+  }
+}
