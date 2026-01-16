@@ -85,14 +85,33 @@ function HomePage() {
         </div>
 
         {/* ABOUT */}
-        <div className="home1-about">
-          <h2>Science & Humanities Association</h2>
-          <p style={{ color: "blue", fontSize: "16px" }}>
-            The <b>Science & Humanities Association (SHA)</b> is one of the largest associations of <b>Kongu Engineering College (Autonomous)</b>.<br />
-            SHA represents the Department of Science & Humanities, which comprises four distinguished departments: Mathematics, Physics, Chemistry, and English. The association also represents all first-year B.E./B.Tech students, serving as a common platform that brings together young minds from diverse disciplines.<br />
-            SHA is presided over by the Dean of Science & Humanities and is organized into six clusters, each headed by a Secretary, Joint Secretary, Treasurer, and Joint Treasurer, along with a team of executive members.<br />Through its initiatives, the association aims to promote academic excellence, leadership, and holistic development beyond the classroom.
-          </p>
-        </div>
+        <div className="about-card">
+  <h2 className="about-title">Science & Humanities Association</h2>
+
+  <p>
+    The <span className="highlight">Science & Humanities Association (SHA)</span> is one of the
+    largest associations of <strong>Kongu Engineering College (Autonomous)</strong>.
+  </p>
+
+  <p>
+    SHA represents the Department of Science & Humanities, comprising four distinguished
+    departments: <strong>Mathematics, Physics, Chemistry,</strong> and <strong>English</strong>.
+    It also represents all first-year B.E./B.Tech students, serving as a common platform
+    that brings together young minds from diverse disciplines.
+  </p>
+
+  <p>
+    The association is presided over by the Dean of Science & Humanities and is organized
+    into six clusters, each headed by a Secretary, Joint Secretary, Treasurer, and Joint
+    Treasurer, along with a team of executive members.
+  </p>
+
+  <p className="closing-line">
+    Through its initiatives, SHA promotes academic excellence, leadership, and holistic
+    development beyond the classroom.
+  </p>
+</div>
+
       </section>
 
       {/*   HOME 2 WITH STARFIELD   */}
