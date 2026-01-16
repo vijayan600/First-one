@@ -1,6 +1,6 @@
-/* =========================
+/*  
    MENU OVERLAY
-========================= */
+  */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -8,9 +8,9 @@
   z-index: 1998;
 }
 
-/* =========================
+/*  
    MENU DRAWER - PURPLE GRADIENT STYLE
-========================= */
+  */
 .menu-drawer {
   position: fixed;
   top: 0;

@@ -41,21 +41,21 @@ const facultyData = [
   { img: f6, name: "Dr. F", dept: "Dept of Biology" },
   { img: f7, name: "Dr. G", dept: "Dept of English" },
   { img: f8, name: "Dr. H", dept: "Dept of History" },
-  { img: f9, name: "Dr. I", dept: "Dept of Economics" },
-  { img: f10, name: "Dr. J", dept: "Dept of Philosophy" },
+  { img: f9, name: "Dr. I", dept: "Dept of Mathematics" },
+  { img: f10, name: "Dr. J", dept: "Dept of ENGLISH" },
 ];
 
 const studentData = [
-  { img: s1, name: "Student A", year: "Final Year" },
-  { img: s2, name: "Student B", year: "Final Year" },
-  { img: s3, name: "Student C", year: "Third Year" },
-  { img: s4, name: "Student D", year: "Third Year" },
-  { img: s5, name: "Student E", year: "Final Year" },
-  { img: s6, name: "Student F", year: "Third Year" },
-  { img: s7, name: "Student G", year: "Final Year" },
-  { img: s8, name: "Student H", year: "Third Year" },
-  { img: s9, name: "Student I", year: "Final Year" },
-  { img: s10, name: "Student J", year: "Third Year" },
+  { img: s1, name: "Student A", year: " Mechatronics" },
+  { img: s2, name: "Student B", year: " Mechatronics" },
+  { img: s3, name: "Student C", year: " ECE" },
+  { img: s4, name: "Student D", year: " EEE" },
+  { img: s5, name: "Student E", year: " CSE" },
+  { img: s6, name: "Student F", year: " ECE" },
+  { img: s7, name: "Student G", year: " Mechatronics" },
+  { img: s8, name: "Student H", year: " IT" },
+  { img: s9, name: "Student I", year: " Mechatronics" },
+  { img: s10, name: "Student J", year: " ECE" },
 ];
 
 function HomePage() {

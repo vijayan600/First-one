@@ -1,6 +1,6 @@
-/* =========================
+/*  
    EVENT PAGE BACKGROUND
-========================= */
+  */
 
 .event-page {
   background: linear-gradient(135deg, #2a0a52, #000000);
@@ -11,9 +11,9 @@
   padding-right: 16px;
 }
 
-/* =========================
+/*  
    EVENT NAVBAR WITH GRADIENT
-========================= */
+  */
 
 .event-navbar {
   position: fixed;
@@ -75,9 +75,9 @@ span.nav-title {
   opacity: 0.8;
 }
 
-/* =========================
+/*  
    MENU OVERLAY
-========================= */
+  */
 
 .menu-overlay {
   position: fixed;
@@ -94,9 +94,9 @@ span.nav-title {
   pointer-events: auto;
 }
 
-/* =========================
+/*  
    MENU DRAWER
-========================= */
+  */
 
 .menu-drawer {
   position: fixed;
@@ -258,9 +258,9 @@ span.nav-title {
   padding-top: 18px;
 }
 
-/* =========================
+/*  
    PAGE TITLE WITH SPACE THEME
-========================= */
+  */
 
 .page-title {
   text-align: center;
@@ -283,9 +283,9 @@ span.nav-title {
   margin-right: -16px;
 }
 
-/* =========================
+/*  
    TABS
-========================= */
+  */
 
 .event-tabs {
   display: flex;
@@ -309,9 +309,9 @@ span.nav-title {
   border-bottom: 2px solid #22c55e;
 }
 
-/* =========================
+/*  
    HORIZONTAL SCROLL
-========================= */
+  */
 
 .event-scroll {
   display: flex;
@@ -326,9 +326,9 @@ span.nav-title {
   display: none;
 }
 
-/* =========================
+/*  
    EVENT CARD - FIXED SIZE WITH BUTTON BELOW
-========================= */
+  */
 
 .event-card {
   min-width: 280px;
@@ -349,9 +349,9 @@ span.nav-title {
   transform: translateY(-4px);
 }
 
-/* =========================
+/*  
    POSTER WRAPPER - FIXED SIZE
-========================= */
+  */
 
 .event-poster-wrapper {
   width: 100%;
@@ -369,9 +369,9 @@ span.nav-title {
   object-position: center;
 }
 
-/* =========================
+/*  
    CARD CONTENT - BELOW POSTER
-========================= */
+  */
 
 .event-card h2 {
   font-size: 15px;
@@ -382,9 +382,9 @@ span.nav-title {
   flex-shrink: 0;
 }
 
-/* =========================
+/*  
    BUTTON - GLASSMORPHISM SPACE DESIGN
-========================= */
+  */
 
 .event-btn {
   margin: auto 16px 16px 16px;
@@ -445,9 +445,9 @@ span.nav-title {
   transform: translateY(-1px);
 }
 
-/* =========================
+/*  
    SCROLL HINT
-========================= */
+  */
 
 .scroll-hint {
   text-align: center;
@@ -456,9 +456,9 @@ span.nav-title {
   margin: 12px 0 24px;
 }
 
-/* =========================
+/*  
    MOBILE RESPONSIVE
-========================= */
+  */
 
 @media (max-width: 768px) {
   .event-navbar {

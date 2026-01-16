@@ -1,6 +1,6 @@
-/* =========================
+/*  
    ENSURE BODY AND HTML ARE SCROLLABLE
-========================= */
+  */
 
 html, body {
   overflow-x: hidden;
@@ -19,9 +19,9 @@ body {
   height: auto;
 }
 
-/* =========================
+/*  
    EVENT DETAILS PAGE - SCROLLABLE
-========================= */
+  */
 
 .event-details-page {
   min-height: 100vh;
@@ -33,9 +33,9 @@ body {
   position: relative;
 }
 
-/* =========================
+/*  
    BACK BUTTON
-========================= */
+  */
 
 .back-button {
   background: rgba(255, 255, 255, 0.1);
@@ -65,9 +65,9 @@ body {
   }
 }
 
-/* =========================
+/*  
    DESKTOP LAYOUT - SIDE BY SIDE
-========================= */
+  */
 
 @media (min-width: 769px) {
   .event-details-page {
@@ -99,9 +99,9 @@ body {
   }
 }
 
-/* =========================
+/*  
    EVENT POSTER - FULL VIEW WITHOUT CROPPING
-========================= */
+  */
 
 .event-poster-container {
   width: 100%;
@@ -121,9 +121,9 @@ body {
   object-position: center;
 }
 
-/* =========================
+/*  
    CATEGORY BADGE
-========================= */
+  */
 
 .event-category-badge {
   display: inline-block;
@@ -139,9 +139,9 @@ body {
   box-shadow: 0 4px 15px rgba(217, 70, 239, 0.4);
 }
 
-/* =========================
+/*  
    EVENT TITLE
-========================= */
+  */
 
 .event-details-title {
   font-size: 28px;
@@ -160,9 +160,9 @@ body {
   }
 }
 
-/* =========================
+/*  
    META TAGS
-========================= */
+  */
 
 .event-meta-tags {
   display: flex;
@@ -182,9 +182,9 @@ body {
   backdrop-filter: blur(10px);
 }
 
-/* =========================
+/*  
    ABOUT EVENT SECTION
-========================= */
+  */
 
 .about-event-section {
   background: rgba(139, 92, 246, 0.1);
@@ -225,9 +225,9 @@ body {
   }
 }
 
-/* =========================
+/*  
    REGISTER BUTTON
-========================= */
+  */
 
 .register-button {
   width: 100%;
@@ -265,9 +265,9 @@ body {
   }
 }
 
-/* =========================
+/*  
    ERROR STATE
-========================= */
+  */
 
 .event-details-error {
   min-height: 100vh;
@@ -302,9 +302,9 @@ body {
   box-shadow: 0 10px 25px rgba(139, 92, 246, 0.5);
 }
 
-/* =========================
+/*  
    RESPONSIVE - MOBILE/TABLET
-========================= */
+  */
 
 @media (max-width: 768px) {
   .event-details-page {
