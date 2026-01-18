@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/gallery.css";
 import GalleryCylinder from "../components/GalleryCylinder";
+import Footer from "../components/Footer";
 
 /* NAV LOGO */
 import shaGold from "../assets/sha-gold.png";
@@ -49,13 +51,15 @@ const images = [
 
 export default function GalleryPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Events", path: "/events" },
     { name: "Gallery", path: "/gallery" },
-    { name: "Members", path: "/members" },
-    { name: "Contact", path: "/contact" }
+    { name: "Members", path: "/cluster-members" },
+   
   ];
 
   //  Calculate midpoint dynamically so it works for any number of images
@@ -94,12 +98,23 @@ export default function GalleryPage() {
     return () => document.removeEventListener('keydown', handleEscape);
   }, [menuOpen]);
 
+  // Handle navigation
+  const handleNavigation = (path) => {
+    navigate(path);
+    setMenuOpen(false);
+  };
+
+  // Handle logo click to go home
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="gallery-bg">
 
       {/*  NAVBAR */}
       <header className="gallery-navbar">
-        <div className="nav-left">
+        <div className="nav-left" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
           <img src={shaGold} alt="SHA Logo" />
           <span>S & H Association</span>
         </div>
@@ -128,7 +143,8 @@ export default function GalleryPage() {
         />
       </div>
 
-      
+      {/* FOOTER */}
+      <Footer />
 
       {/* SIDE MENU */}
       <div className={`side-menu ${menuOpen ? "open" : ""}`}>
@@ -139,26 +155,34 @@ export default function GalleryPage() {
         ></div>
         
         <div className="menu-content" onClick={(e) => e.stopPropagation()}>
+          {/* CLOSE BUTTON */}
+          <button 
+            className="close-btn" 
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+
           <div className="menu-header">
-            <h2>S & H Association</h2>
+            <h2>SCIENCE & HUMANITIES ASSOCIATION</h2>
           </div>
 
           <nav className="menu-nav">
             {menuItems.map((item, index) => (
               <a 
                 key={index}
-                href={item.path}
-                className={`menu-item ${item.name === "Gallery" ? "active" : ""}`}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => handleNavigation(item.path)}
+                className={`menu-item ${location.pathname === item.path ? "active" : ""}`}
               >
                 <span className="menu-text">{item.name}</span>
-                <span className="menu-arrow">→</span>
+       
               </a>
             ))}
           </nav>
 
           <div className="menu-footer">
-            <p>© 2024 S & H Association</p>
+            <p>© 2026 SCIENCE & HUMANITIES ASSOCIATION</p>
           </div>
         </div>
       </div>

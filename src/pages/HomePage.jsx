@@ -1,6 +1,8 @@
 import heroImg from "../assets/hero-building.jpg";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import AnimatedBackground from "../components/AnimatedBackground";
+import Footer from "../components/Footer"; // ADD THIS LINE
 
 // Import gallery images
 import g1 from "../assets/gallery/g1.jpg";
@@ -8,7 +10,7 @@ import g2 from "../assets/gallery/g2.jpg";
 import g3 from "../assets/gallery/g3.jpg";
 import g4 from "../assets/gallery/g4.jpg";
 
-// Import faculty images (10 faculty members)
+// Import faculty images
 import f1 from "../assets/faculty/f1.jpg";
 import f2 from "../assets/faculty/f2.jpg";
 import f3 from "../assets/faculty/f3.jpg";
@@ -20,7 +22,7 @@ import f8 from "../assets/faculty/f8.jpg";
 import f9 from "../assets/faculty/f9.jpg";
 import f10 from "../assets/faculty/f10.jpg";
 
-// Import student coordinator images (10 students)
+// Import student coordinator images
 import s1 from "../assets/students/s1.jpg";
 import s2 from "../assets/students/s2.jpg";
 import s3 from "../assets/students/s3.jpg";
@@ -86,68 +88,37 @@ function HomePage() {
 
         {/* ABOUT */}
         <div className="about-card">
-  <h2 className="about-title">Science & Humanities Association</h2>
+          <h2 className="about-title">Science & Humanities Association</h2>
 
-  <p>
-    The <span className="highlight">Science & Humanities Association (SHA)</span> is one of the
-    largest associations of <strong>Kongu Engineering College (Autonomous)</strong>.
-  </p>
+          <p>
+            The <span className="highlight">Science & Humanities Association (SHA)</span> is one of the
+            largest associations of <strong>Kongu Engineering College (Autonomous)</strong>.
+          </p>
 
-  <p>
-    SHA represents the Department of Science & Humanities, comprising four distinguished
-    departments: <strong>Mathematics, Physics, Chemistry,</strong> and <strong>English</strong>.
-    It also represents all first-year B.E./B.Tech students, serving as a common platform
-    that brings together young minds from diverse disciplines.
-  </p>
+          <p>
+            SHA represents the Department of Science & Humanities, comprising four distinguished
+            departments: <strong>Mathematics, Physics, Chemistry,</strong> and <strong>English</strong>.
+            It also represents all first-year B.E./B.Tech students, serving as a common platform
+            that brings together young minds from diverse disciplines.
+          </p>
 
-  <p>
-    The association is presided over by the Dean of Science & Humanities and is organized
-    into six clusters, each headed by a Secretary, Joint Secretary, Treasurer, and Joint
-    Treasurer, along with a team of executive members.
-  </p>
+          <p>
+            The association is presided over by the Dean of Science & Humanities and is organized
+            into six clusters, each headed by a Secretary, Joint Secretary, Treasurer, and Joint
+            Treasurer, along with a team of executive members.
+          </p>
 
-  <p className="closing-line">
-    Through its initiatives, SHA promotes academic excellence, leadership, and holistic
-    development beyond the classroom.
-  </p>
-</div>
-
+          <p className="closing-line">
+            Through its initiatives, SHA promotes academic excellence, leadership, and holistic
+            development beyond the classroom.
+          </p>
+        </div>
       </section>
 
-      {/*   HOME 2 WITH STARFIELD   */}
+      {/*   HOME 2 WITH NEW ANIMATED BACKGROUND   */}
       <section className="screen home2">
-        {/* Thousands of static twinkling stars */}
-        <div className="static-stars-bg">
-          {[...Array(1000)].map((_, i) => (
-            <div 
-              key={i} 
-              className="static-star" 
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                width: `${1 + Math.random() * 2}px`,
-                height: `${1 + Math.random() * 2}px`
-              }}
-            ></div>
-          ))}
-        </div>
-
-        {/* 7 slow-moving shooting stars */}
-        <div className="shooting-stars-bg">
-          {[...Array(7)].map((_, i) => (
-            <div 
-              key={i} 
-              className="shooting-star" 
-              style={{
-                top: `${10 + Math.random() * 40}%`,
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${i * 4}s`,
-                animationDuration: `${3 + Math.random() * 2}s`
-              }}
-            ></div>
-          ))}
-        </div>
+        {/* NEW Three.js Animated Background */}
+        <AnimatedBackground />
 
         {/* Content */}
         <div className="home2-content">
@@ -215,6 +186,9 @@ function HomePage() {
 
         <p className="swipe-hint">← Swipe to see more →</p>
       </section>
+
+      {/* ADD FOOTER HERE */}
+      <Footer />
     </div>
   );
 }

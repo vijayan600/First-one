@@ -3,7 +3,6 @@
   */
 .gallery-bg {
   min-height: 100vh;
-  height: 100vh;
   background: radial-gradient(
     ellipse at center top,
     #4c1d95 0%,
@@ -11,7 +10,6 @@
     #000000 100%
   );
   color: white;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -74,13 +72,14 @@
 }
 
 /*  
-   PAGE CONTENT WRAPPER
+   PAGE CONTENT WRAPPER - FIXED HEIGHT
   */
 .gallery-page-content {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  position: relative;
+  min-height: calc(100vh - 60px);
 }
 
 /*  
@@ -104,6 +103,7 @@
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 2px;
+  flex-shrink: 0;
 }
 
 .menu-icon {
@@ -123,15 +123,15 @@
 }
 
 /*  
-   SIDE MENU - NO BLUR VERSION
+   SIDE MENU - FIXED VERSION WITH SMOOTH ANIMATION
   */
 .side-menu {
   position: fixed;
   top: 0;
   right: 0;
-  width: auto;
+  width: 100%;
   height: 100vh;
-  z-index: 200;
+  z-index: 2000;
   pointer-events: none;
 }
 
@@ -139,15 +139,30 @@
   pointer-events: auto;
 }
 
+/*  
+   MENU OVERLAY - NOW VISIBLE WITH FADE
+  */
 .menu-overlay {
-  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
+.side-menu.open .menu-overlay {
+  opacity: 1;
+}
+
+/*  
+   MENU CONTENT - WITH SMOOTH SLIDE ANIMATION
+  */
 .menu-content {
   position: fixed;
   top: 0;
   right: 0;
-  width: 350px;
+  width: 320px;
   height: 100vh;
   background: linear-gradient(
     135deg,
@@ -157,62 +172,91 @@
   );
   border-left: 1px solid rgba(250, 204, 21, 0.3);
   box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 30px 25px;
+  overflow-y: auto;
   transform: translateX(100%);
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-  overflow-y: auto;
 }
 
 .side-menu.open .menu-content {
   transform: translateX(0);
 }
 
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  color: #facc15;
+  transform: scale(1.1);
+}
+
+/*  
+   MENU HEADER
+  */
 .menu-header {
   text-align: center;
-  padding-bottom: 30px;
-  border-bottom: 1px solid rgba(250, 204, 21, 0.2);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .menu-header h2 {
-  font-size: 20px;
+  color: #fbbf24;
+  font-size: 18px;
   font-weight: 700;
-  color: #facc15;
-  text-transform: uppercase;
+  margin: 30px 0;
+  padding: 40px 0;
   letter-spacing: 2px;
-  margin: 0;
-  text-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  border-top: 2px solid rgba(250, 204, 21, 0.3);
+  border-bottom: 2px solid rgba(250, 204, 21, 0.3);
 }
 
+/*  
+   MENU NAVIGATION
+  */
 .menu-nav {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px 0;
+  gap: 0;
+  flex: 1;
+  padding: 15px 0;
 }
 
-/* Menu items - no animation by default */
 .menu-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 18px 20px;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  color: #ffffff;
   text-decoration: none;
-  color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
   position: relative;
   overflow: hidden;
   opacity: 0;
   transform: translateX(50px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  display: block;
 }
 
 /* Animate only when menu opens */
@@ -271,54 +315,34 @@
   transform: translateX(10px);
   border-left: 3px solid #facc15;
   padding-left: 17px;
+  color: #facc15;
 }
 
 .menu-item.active {
   background: transparent;
-  border-left: 3px solid #facc15;
+  border-left: 3px solid #fbbf24;
   padding-left: 17px;
-  color: #facc15;
+  color: #fbbf24;
 }
 
-.menu-number {
-  font-size: 12px;
-  color: #facc15;
-  font-weight: 700;
-  min-width: 25px;
-}
-
-.menu-text {
-  flex: 1;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.menu-arrow {
-  font-size: 18px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-}
-
-.side-menu.open .menu-item:hover .menu-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+/*  
+   MENU FOOTER
+  */
 .menu-footer {
-  padding-top: 20px;
+  padding-top: 18px;
   border-top: 1px solid rgba(250, 204, 21, 0.2);
   text-align: center;
+  margin-top: auto;
 }
 
 .menu-footer p {
-  font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
   margin: 0;
 }
 
 /*  
-   CYLINDER WRAPPER
+   CYLINDER WRAPPER - TAKES REMAINING SPACE
   */
 .cylinder-wrapper {
   position: relative;
@@ -329,11 +353,12 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 20px 0;
-  min-height: 450px;
+  padding: 0;
+  min-height: calc(100vh - 180px);
   perspective: 1300px;
   touch-action: pan-y pinch-zoom;
   user-select: none;
+  pointer-events: auto;
 }
 
 .cylinder-wrapper::before {
@@ -353,6 +378,7 @@
   );
   animation: pulse 4s ease-in-out infinite;
   pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes pulse {
@@ -368,13 +394,16 @@
   justify-content: center;
   align-items: center;
   transform-style: preserve-3d;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .cylinder {
   position: relative;
   width: 180px;
-  height: 120px;
+  height: 300px;
   transform-style: preserve-3d;
+  pointer-events: none;
 }
 
 .cylinder-item {
@@ -382,7 +411,11 @@
   width: 180px;
   height: 120px;
   backface-visibility: hidden;
-  transition: transform 0.3s ease;
+  pointer-events: all;
+  transition: z-index 0s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cylinder-item img {
@@ -394,33 +427,22 @@
   box-shadow:
     0 0 25px rgba(168, 85, 247, 0.5),
     0 8px 35px rgba(0, 0, 0, 0.6);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   display: block;
   -webkit-user-drag: none;
-   user-drag: none;
+  user-drag: none;
+  cursor: pointer;
+  will-change: transform;
 }
 
+/* FIXED: Hover scale works on img element, not parent */
 @media (hover: hover) and (pointer: fine) {
-  .cylinder-item img:hover {
+  .cylinder-item:hover img {
     transform: scale(1.15);
     border-color: #facc15;
     box-shadow:
       0 0 35px rgba(250, 204, 21, 0.6),
       0 12px 45px rgba(0, 0, 0, 0.8);
-    z-index: 20;
-  }
-}
-
-/*  
-   DESKTOP ADJUSTMENTS
-  */
-@media (min-width: 1025px) {
-  .cylinder-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: -100px;
   }
 }
 
@@ -442,7 +464,7 @@
 }
 
 /*  
-   MOBILE
+   MOBILE - FIXED CYLINDER COLLAPSE ISSUE
   */
 @media (max-width: 768px) {
   .gallery-navbar {
@@ -454,12 +476,34 @@
   }
 
   .gallery-title {
-    font-size: 22px;
-    padding: 25px 15px;
+    font-size: 20px;
+    padding: 15px 15px;
   }
 
   .menu-content {
-    width: 280px;
+    width: 280px !important;
+    max-width: 280px !important;
+    padding: 20px;
+  }
+
+  .menu-header h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+
+  .menu-nav {
+    gap: 10px;
+    padding: 20px 0;
+  }
+
+  .menu-item {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+
+  .gallery-page-content {
+    min-height: calc(100vh - 55px);
   }
 
   .cylinder-wrapper {
@@ -467,17 +511,29 @@
     padding: 10px 0;
     perspective: 1000px;
     min-height: 350px;
-    margin-top: -400px;
+  }
+
+  .cylinder-wrapper::before {
+    width: 280px;
+    height: 280px;
   }
 
   .cylinder-track {
     height: 115px;
   }
 
-  .cylinder,
+  .cylinder {
+    width: 150px;
+    height: 100px;
+  }
+
   .cylinder-item {
     width: 150px;
     height: 100px;
+  }
+
+  .cylinder-item:active {
+    z-index: 999;
   }
 
   .cylinder-item img:active {
@@ -487,7 +543,7 @@
 }
 
 /*  
-   SMALL MOBILE
+   SMALL MOBILE - FIXED CYLINDER COLLAPSE ISSUE
   */
 @media (max-width: 480px) {
   .gallery-navbar {
@@ -508,14 +564,18 @@
   }
 
   .gallery-title {
-    font-size: 18px;
-    padding: 20px 10px;
+    font-size: 16px;
+    padding: 18px 10px;
   }
 
   .menu-content {
     width: 90%;
     max-width: 320px;
     padding: 20px;
+  }
+
+  .menu-header h2 {
+    font-size: 20px;
   }
 
   .menu-item {
@@ -528,11 +588,20 @@
     min-height: 300px;
   }
 
+  .cylinder-wrapper::before {
+    width: 250px;
+    height: 350px;
+  }
+
   .cylinder-track {
     height: 100px;
   }
 
-  .cylinder,
+  .cylinder {
+    width: 130px;
+    height: 325px;
+  }
+
   .cylinder-item {
     width: 130px;
     height: 85px;
@@ -540,6 +609,13 @@
 
   .cylinder-item img {
     border-radius: 10px;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-content {
+    width: 320px;
+    max-width: 320px;
   }
 }
 

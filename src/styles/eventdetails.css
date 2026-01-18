@@ -226,6 +226,140 @@ body {
 }
 
 /*  
+   WINNERS SECTION - PAST EVENTS ONLY
+  */
+
+.winner-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(217, 70, 239, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-item:last-child {
+  margin-bottom: 0;
+}
+
+.winner-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #ffd700, #ffed4e, #ffd700);
+}
+
+.winner-item:hover {
+  transform: translateX(5px);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(217, 70, 239, 0.3));
+  box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+}
+
+.winner-place-badge {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  color: #1a0b2e;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.winner-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.winner-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.winner-category {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.winner-prize {
+  font-size: 15px;
+  color: #ffd700;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* Different colors for different places */
+.winner-item:nth-child(1) .winner-place-badge {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+}
+
+.winner-item:nth-child(2) .winner-place-badge {
+  background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+}
+
+.winner-item:nth-child(3) .winner-place-badge {
+  background: linear-gradient(135deg, #cd7f32, #e8a87c);
+}
+
+@media (max-width: 768px) {
+  .winner-item {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .winner-place-badge {
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+  }
+
+  .winner-name {
+    font-size: 16px;
+  }
+
+  .winner-category {
+    font-size: 13px;
+  }
+
+  .winner-prize {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .winner-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .winner-place-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+  }
+}
+
+/*  
    REGISTER BUTTON
   */
 

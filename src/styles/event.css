@@ -1,4 +1,92 @@
 /*  
+   SIDE MENU - SHARED STRUCTURE
+  */
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.side-menu.open {
+  pointer-events: auto;
+}
+
+.side-menu .menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.side-menu.open .menu-overlay {
+  opacity: 1;
+}
+
+.side-menu .menu-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 10, 60, 0.98) 0%,
+    rgba(76, 29, 149, 0.95) 50%,
+    rgba(30, 10, 60, 0.98) 100%
+  );
+  border-left: 1px solid rgba(250, 204, 21, 0.3);
+  box-shadow: none;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 25px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), box-shadow 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.side-menu.open .menu-content {
+  transform: translateX(0);
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.side-menu .menu-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.side-menu .menu-header h2 {
+  color: #fbbf24;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 30px 0;
+  padding: 40px 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  border-top: 2px solid rgba(250, 204, 21, 0.3);
+  border-bottom: 2px solid rgba(250, 204, 21, 0.3);
+}
+
+.side-menu .menu-footer {
+  padding-top: 18px;
+  border-top: 1px solid rgba(250, 204, 21, 0.2);
+  text-align: center;
+  margin-top: auto;
+}
+
+.side-menu .menu-footer p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  margin: 0;
+}/*  
    EVENT PAGE BACKGROUND
   */
 
@@ -111,9 +199,9 @@ span.nav-title {
     rgba(30, 10, 60, 0.98) 100%
   );
   border-left: 1px solid rgba(250, 204, 21, 0.3);
-  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+  box-shadow: none;
   z-index: 2000;
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), box-shadow 0.5s cubic-bezier(0.77, 0, 0.175, 1);
   padding: 30px 25px;
   overflow-y: auto;
   transform: translateX(100%);
@@ -121,6 +209,7 @@ span.nav-title {
 
 .menu-drawer.open {
   transform: translateX(0);
+  box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .close-btn {
@@ -157,15 +246,18 @@ span.nav-title {
   border-bottom: 2px solid rgba(250, 204, 21, 0.3);
 }
 
-.menu-links {
+.menu-links,
+.menu-nav {
   display: flex;
   flex-direction: column;
   gap: 0;
   margin-top: 15px;
   padding: 15px 0;
+  flex: 1;
 }
 
-.menu-links a {
+.menu-links a,
+.menu-nav a {
   color: #ffffff;
   text-decoration: none;
   font-size: 15px;
@@ -179,10 +271,25 @@ span.nav-title {
   overflow: hidden;
   opacity: 0;
   transform: translateX(50px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-text {
+  flex: 1;
+}
+
+.menu-arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
 }
 
 /* Animate only when menu opens */
-.menu-drawer.open .menu-links a {
+.menu-drawer.open .menu-links a,
+.menu-drawer.open .menu-nav a,
+.side-menu.open .menu-content .menu-nav a {
   animation: slideIn 0.5s ease forwards;
 }
 
@@ -194,21 +301,42 @@ span.nav-title {
 }
 
 /* Staggered delays */
-.menu-drawer.open .menu-links a:nth-child(1) { animation-delay: 0.1s; }
-.menu-drawer.open .menu-links a:nth-child(2) { animation-delay: 0.15s; }
-.menu-drawer.open .menu-links a:nth-child(3) { animation-delay: 0.2s; }
-.menu-drawer.open .menu-links a:nth-child(4) { animation-delay: 0.25s; }
-.menu-drawer.open .menu-links a:nth-child(5) { animation-delay: 0.3s; }
+.menu-drawer.open .menu-links a:nth-child(1),
+.menu-drawer.open .menu-nav a:nth-child(1),
+.side-menu.open .menu-content .menu-nav a:nth-child(1) { animation-delay: 0.1s; }
+
+.menu-drawer.open .menu-links a:nth-child(2),
+.menu-drawer.open .menu-nav a:nth-child(2),
+.side-menu.open .menu-content .menu-nav a:nth-child(2) { animation-delay: 0.15s; }
+
+.menu-drawer.open .menu-links a:nth-child(3),
+.menu-drawer.open .menu-nav a:nth-child(3),
+.side-menu.open .menu-content .menu-nav a:nth-child(3) { animation-delay: 0.2s; }
+
+.menu-drawer.open .menu-links a:nth-child(4),
+.menu-drawer.open .menu-nav a:nth-child(4),
+.side-menu.open .menu-content .menu-nav a:nth-child(4) { animation-delay: 0.25s; }
+
+.menu-drawer.open .menu-links a:nth-child(5),
+.menu-drawer.open .menu-nav a:nth-child(5),
+.side-menu.open .menu-content .menu-nav a:nth-child(5) { animation-delay: 0.3s; }
+
+.menu-drawer.open .menu-links a:nth-child(6),
+.menu-drawer.open .menu-nav a:nth-child(6),
+.side-menu.open .menu-content .menu-nav a:nth-child(6) { animation-delay: 0.35s; }
 
 /* Reset when closed */
-.menu-drawer:not(.open) .menu-links a {
+.menu-drawer:not(.open) .menu-links a,
+.menu-drawer:not(.open) .menu-nav a,
+.side-menu:not(.open) .menu-content .menu-nav a {
   animation: none;
   opacity: 0;
   transform: translateX(50px);
   transition: none;
 }
 
-.menu-links a::before {
+.menu-links a::before,
+.menu-nav a::before {
   content: "";
   position: absolute;
   top: 0;
@@ -224,11 +352,14 @@ span.nav-title {
   transition: left 0.5s ease;
 }
 
-.menu-links a:hover::before {
+.menu-links a:hover::before,
+.menu-nav a:hover::before {
   left: 100%;
 }
 
-.menu-drawer.open .menu-links a:hover {
+.menu-drawer.open .menu-links a:hover,
+.menu-drawer.open .menu-nav a:hover,
+.side-menu.open .menu-content .menu-nav a:hover {
   background: rgba(250, 204, 21, 0.1);
   border-color: transparent;
   transform: translateX(10px);
@@ -237,7 +368,14 @@ span.nav-title {
   color: #facc15;
 }
 
-.menu-links a.active {
+.menu-drawer.open .menu-links a:hover::after,
+.menu-drawer.open .menu-nav a:hover .menu-arrow,
+.side-menu.open .menu-content .menu-nav a:hover .menu-arrow {
+  transform: translateX(5px);
+}
+
+.menu-links a.active,
+.menu-nav a.active {
   background: transparent;
   border-left: 3px solid #fbbf24;
   padding-left: 17px;

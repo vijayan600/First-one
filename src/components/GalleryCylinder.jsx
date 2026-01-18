@@ -35,8 +35,11 @@ export default function GalleryCylinder({ topImages, bottomImages }) {
     }
   }, [angle]);
 
-  // 🔥 MOUSE/TOUCH HANDLERS
-  const handleStart = (clientX) => {
+  // 🔥 MOUSE/TOUCH HANDLERS - Don't interfere with image hover
+  const handleStart = (clientX, target) => {
+    // Don't start dragging if clicking directly on an image
+    if (target.tagName === 'IMG') return;
+    
     setIsDragging(true);
     setStartX(clientX);
     setCurrentAngle(angle);
@@ -56,8 +59,7 @@ export default function GalleryCylinder({ topImages, bottomImages }) {
 
   // Mouse events
   const handleMouseDown = (e) => {
-    e.preventDefault();
-    handleStart(e.clientX);
+    handleStart(e.clientX, e.target);
   };
 
   const handleMouseMove = (e) => {
@@ -66,7 +68,7 @@ export default function GalleryCylinder({ topImages, bottomImages }) {
 
   // Touch events
   const handleTouchStart = (e) => {
-    handleStart(e.touches[0].clientX);
+    handleStart(e.touches[0].clientX, e.target);
   };
 
   const handleTouchMove = (e) => {
@@ -89,7 +91,24 @@ export default function GalleryCylinder({ topImages, bottomImages }) {
     return 340;
   };
 
-  // Render images around cylinder
+  // 🔥 FIXED: Calculate z-index based on position
+  const calculateZIndex = (itemAngle, currentRotation) => {
+    // Normalize angles to 0-360
+    const normalizedItemAngle = ((itemAngle - currentRotation) % 360 + 360) % 360;
+    
+    // Items at the back (around 180deg) should have lower z-index
+    // Items at the front (around 0deg/360deg) should have higher z-index
+    if (normalizedItemAngle > 90 && normalizedItemAngle < 270) {
+      // Back half - lower z-index
+      return Math.floor(100 - Math.abs(180 - normalizedItemAngle));
+    } else {
+      // Front half - higher z-index
+      const frontAngle = normalizedItemAngle > 180 ? 360 - normalizedItemAngle : normalizedItemAngle;
+      return Math.floor(200 - frontAngle);
+    }
+  };
+
+  // Render images around cylinder with dynamic z-index
   const renderItems = (items, isOffset = false) => {
     const total = items.length;
     const angleStep = 360 / total;
@@ -98,13 +117,21 @@ export default function GalleryCylinder({ topImages, bottomImages }) {
     return items.map((img, i) => {
       const offset = isOffset ? angleStep / 2 : 0;
       const itemAngle = i * angleStep + offset;
+      const zIndex = calculateZIndex(itemAngle, angle);
 
       return (
         <div
           key={i}
           className="cylinder-item"
           style={{
-            transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`
+            transform: `rotateY(${itemAngle}deg) translateZ(${radius}px)`,
+            zIndex: zIndex
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.zIndex = '999';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.zIndex = zIndex;
           }}
         >
           <img src={img} alt={`Gallery ${i + 1}`} loading="lazy" />

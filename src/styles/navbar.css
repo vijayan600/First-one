@@ -97,6 +97,7 @@
   border-left: 4px solid transparent;
   position: relative;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .menu-links a::after {
@@ -134,6 +135,30 @@
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
   letter-spacing: 0.5px;
+}
+
+/* LOGO CLICKABLE STYLES */
+.nav-left {
+  cursor: pointer !important;
+  transition: opacity 0.2s ease;
+}
+
+.nav-left:hover {
+  opacity: 0.85;
+}
+
+.nav-center {
+  cursor: pointer !important;
+  transition: opacity 0.2s ease;
+}
+
+.nav-center:hover {
+  opacity: 0.85;
+}
+
+.nav-logo,
+.nav-kec {
+  cursor: pointer;
 }
 
 /* MOBILE */

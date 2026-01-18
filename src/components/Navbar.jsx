@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
+import shaGold from "../assets/sha-gold.png";
 import kecLogo from "../assets/kec-logo.png";
 import "../styles/navbar.css";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,20 +33,58 @@ function Navbar() {
     }
   }, []);
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    setOpen(false);
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Logo clicked - navigating to home");
+    
+    if (location.pathname === "/") {
+      const scrollContainer = document.querySelector('.home-scroll');
+      if (scrollContainer) {
+        scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const scrollContainer = document.querySelector('.home-scroll');
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: 0, behavior: 'auto' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+      }, 100);
+    }
+  };
+
+  const currentLogo = isHomePage ? logo : shaGold;
+
   return (
     <>
-      {/* NAVBAR */}
       <header className={`main-navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="nav-left">
-          <img src={logo} className="nav-logo" alt="SHA" />
+        <div 
+          className="nav-left" 
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+        >
+          <img src={currentLogo} className="nav-logo" alt="SHA" />
           <span className="nav-title">SHA</span>
-          {/* S & H Association text appears when scrolled */}
           <span className={`nav-association-text ${scrolled ? '' : 'hidden'}`}>
             Science & Humanities Association
           </span>
         </div>
 
-        <div className={`nav-center ${scrolled ? 'hidden' : ''}`}>
+        <div 
+          className={`nav-center ${scrolled ? 'hidden' : ''}`} 
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+        >
           <img src={kecLogo} className="nav-kec" alt="KEC" />
         </div>
 
@@ -51,10 +95,8 @@ function Navbar() {
         </div>
       </header>
 
-      {/* OVERLAY */}
       {open && <div className="menu-overlay" onClick={() => setOpen(false)} />}
 
-      {/* STYLED MENU DRAWER */}
       <aside className={`menu-drawer ${open ? "open" : ""}`}>
         <button className="close-btn" onClick={() => setOpen(false)}>
           ✕
@@ -65,21 +107,31 @@ function Navbar() {
         </div>
 
         <nav className="menu-links">
-          <a href="/" className={window.location.pathname === "/" ? "active" : ""}>
+          <a 
+            onClick={() => handleNavigation("/")} 
+            className={location.pathname === "/" ? "active" : ""}
+          >
             HOME
           </a>
-          <a href="/events" className={window.location.pathname === "/events" ? "active" : ""}>
+          <a 
+            onClick={() => handleNavigation("/events")} 
+            className={location.pathname === "/events" ? "active" : ""}
+          >
             EVENTS
           </a>
-          <a href="/gallery" className={window.location.pathname === "/gallery" ? "active" : ""}>
+          <a 
+            onClick={() => handleNavigation("/gallery")} 
+            className={location.pathname === "/gallery" ? "active" : ""}
+          >
             GALLERY
           </a>
-          <a href="/members" className={window.location.pathname === "/members" ? "active" : ""}>
+          <a 
+            onClick={() => handleNavigation("/cluster-members")} 
+            className={location.pathname === "/cluster-members" ? "active" : ""}
+          >
             MEMBERS
           </a>
-          <a href="/contact" className={window.location.pathname === "/contact" ? "active" : ""}>
-            CONTACT
-          </a>
+        
         </nav>
 
         <div className="menu-footer">

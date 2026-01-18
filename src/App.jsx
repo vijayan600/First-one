@@ -1,11 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Loader from "./components/Loader";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import EventPage from "./pages/EventPage";
 import EventDetails from "./pages/EventDetails";
 import GalleryPage from "./pages/GalleryPage";
+import ClusterMembers from "./pages/ClusterMembers";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoadComplete = () => {
+    setLoading(false);
+  };
+
+  if (loading) {
+    return <Loader onLoadComplete={handleLoadComplete} />;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -21,11 +34,11 @@ function App() {
 
         <Route path="/events" element={<EventPage />} />
         
-        {/* EVENT DETAILS ROUTE */}
         <Route path="/events/:eventId" element={<EventDetails />} />
 
-        {/* GALLERY ROUTE */}
         <Route path="/gallery" element={<GalleryPage />} />
+
+        <Route path="/cluster-members" element={<ClusterMembers />} />
       </Routes>
     </BrowserRouter>
   );
