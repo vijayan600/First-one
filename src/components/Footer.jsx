@@ -58,6 +58,7 @@ export default function Footer() {
           {/* Team Photos */}
           <div className="footer-team-small">
             <div className="team-member-card">
+              
               <img src={vijayAnand} alt="Vijay Anand M" />
               <div className="team-member-info">
                 <h4>Vijay Anand M</h4>

@@ -342,7 +342,7 @@
 }
 
 /*  
-   CYLINDER WRAPPER - TAKES REMAINING SPACE
+   CYLINDER WRAPPER - FIXED FOR MOBILE TOUCH
   */
 .cylinder-wrapper {
   position: relative;
@@ -356,9 +356,11 @@
   padding: 0;
   min-height: calc(100vh - 180px);
   perspective: 1300px;
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-x pan-y; /* FIXED: Allow horizontal and vertical touch panning */
   user-select: none;
   pointer-events: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  overflow: visible;
 }
 
 .cylinder-wrapper::before {
@@ -404,6 +406,11 @@
   height: 300px;
   transform-style: preserve-3d;
   pointer-events: none;
+  cursor: grab;
+}
+
+.cylinder.dragging {
+  cursor: grabbing;
 }
 
 .cylinder-item {
@@ -416,6 +423,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  touch-action: none; /* FIXED: Prevent default touch actions on items */
 }
 
 .cylinder-item img {
@@ -456,6 +464,7 @@
 
   .cylinder-wrapper {
     gap: 6px;
+    touch-action: pan-x pan-y;
   }
   
   .cylinder-track {
@@ -464,7 +473,7 @@
 }
 
 /*  
-   MOBILE - FIXED CYLINDER COLLAPSE ISSUE
+   MOBILE - FIXED TOUCH SCROLLING
   */
 @media (max-width: 768px) {
   .gallery-navbar {
@@ -511,6 +520,9 @@
     padding: 10px 0;
     perspective: 1000px;
     min-height: 350px;
+    touch-action: pan-x pan-y; /* FIXED: Enable horizontal swipe */
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
   }
 
   .cylinder-wrapper::before {
@@ -525,11 +537,17 @@
   .cylinder {
     width: 150px;
     height: 100px;
+    cursor: grab;
+  }
+
+  .cylinder.dragging {
+    cursor: grabbing;
   }
 
   .cylinder-item {
     width: 150px;
     height: 100px;
+    touch-action: none;
   }
 
   .cylinder-item:active {
@@ -543,7 +561,7 @@
 }
 
 /*  
-   SMALL MOBILE - FIXED CYLINDER COLLAPSE ISSUE
+   SMALL MOBILE - FIXED TOUCH SCROLLING
   */
 @media (max-width: 480px) {
   .gallery-navbar {
@@ -586,6 +604,8 @@
   .cylinder-wrapper {
     gap: 4px;
     min-height: 300px;
+    touch-action: pan-x pan-y; /* FIXED: Enable horizontal swipe */
+    -webkit-overflow-scrolling: touch;
   }
 
   .cylinder-wrapper::before {
@@ -600,11 +620,17 @@
   .cylinder {
     width: 130px;
     height: 325px;
+    cursor: grab;
+  }
+
+  .cylinder.dragging {
+    cursor: grabbing;
   }
 
   .cylinder-item {
     width: 130px;
     height: 85px;
+    touch-action: none;
   }
 
   .cylinder-item img {
