@@ -112,7 +112,7 @@ export default function ClusterMembers() {
       <header className="members-navbar">
         <div className="nav-left" onClick={() => handleNavigation("/")} style={{ cursor: 'pointer' }}>
           <img src={shaGold} alt="SHA" />
-          <span className="nav-title">S & H ASSOCIATION</span>
+          <span className="nav-title">S & H Association</span>
         </div>
 
         <div className="nav-right" onClick={() => setMenuOpen(true)}>

@@ -242,6 +242,44 @@
   opacity: 1;
 }
 
+/* LinkedIn Corner Badge */
+.linkedin-corner-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #0077b5, #005885);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
+  z-index: 5;
+}
+
+.linkedin-corner-badge svg {
+  width: 16px;
+  height: 16px;
+  fill: white;
+}
+
+.linkedin-corner-badge:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(0, 119, 181, 0.6);
+}
+
+/* Show LinkedIn badge on hover (Desktop) */
+.team-member-card:hover .linkedin-corner-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* Minimal Info Card - Compact Bottom Animation */
 .team-member-info {
   position: absolute;
@@ -297,6 +335,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
   line-height: 1.1;
+}
+
+/* Active state for mobile */
+.team-member-info.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Show LinkedIn badge when card is active (Mobile) */
+.team-member-card:has(.team-member-info.active) .linkedin-corner-badge {
+  opacity: 1;
+  transform: scale(1);
 }
 
 /* Hover Effects */
@@ -383,6 +434,19 @@
     height: 88px;
   }
 
+  .linkedin-corner-badge {
+    top: -3px;
+    right: -3px;
+    width: 28px;
+    height: 28px;
+    border: 2.5px solid #ffffff;
+  }
+
+  .linkedin-corner-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
   .team-member-info {
     top: 72px;
     width: 75px;
@@ -453,6 +517,19 @@
   .team-member-card::before {
     width: 78px;
     height: 78px;
+  }
+
+  .linkedin-corner-badge {
+    top: -2px;
+    right: -2px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ffffff;
+  }
+
+  .linkedin-corner-badge svg {
+    width: 12px;
+    height: 12px;
   }
 
   .team-member-info {

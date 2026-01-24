@@ -117,9 +117,7 @@ body {
   transform: scale(1.1);
 }
 
-/*  
-   SIDE MENU - EXACT COPY FROM GALLERY
-  */
+/*  SIDE MENU  */
 .side-menu {
   position: fixed;
   top: 0;
@@ -134,9 +132,7 @@ body {
   pointer-events: auto;
 }
 
-/*  
-   MENU OVERLAY - EXACT COPY FROM GALLERY
-  */
+/*  MENU OVERLAY  */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -150,9 +146,7 @@ body {
   opacity: 1;
 }
 
-/*  
-   MENU CONTENT - EXACT COPY FROM GALLERY
-  */
+/*  MENU CONTENT  */
 .menu-content,
 .menu-drawer {
   position: fixed;
@@ -167,7 +161,7 @@ body {
     rgba(30, 10, 60, 0.98) 100%
   );
   border-left: 1px solid rgba(250, 204, 21, 0.3);
-  box-shadow: -02px 0 02px rgba(0, 0, 0, 0.5);
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.5);
   z-index: 2000;
   display: flex;
   flex-direction: column;
@@ -202,9 +196,7 @@ body {
   transform: scale(1.1);
 }
 
-/*  
-   MENU HEADER - EXACT COPY FROM GALLERY
-  */
+/*  MENU HEADER  */
 .menu-header {
   text-align: center;
   margin-bottom: 20px;
@@ -223,9 +215,7 @@ body {
   border-bottom: 2px solid rgba(250, 204, 21, 0.3);
 }
 
-/*  
-   MENU NAVIGATION - EXACT COPY FROM GALLERY
-  */
+/*  MENU NAVIGATION  */
 .menu-nav,
 .menu-links {
   display: flex;
@@ -258,7 +248,6 @@ body {
   display: block;
 }
 
-/* Animate only when menu opens */
 .side-menu.open .menu-item,
 .side-menu.open .menu-links a {
   animation: slideIn 0.5s ease forwards;
@@ -271,7 +260,6 @@ body {
   }
 }
 
-/* Staggered delays */
 .side-menu.open .menu-item:nth-child(1),
 .side-menu.open .menu-links a:nth-child(1) { animation-delay: 0.1s; }
 .side-menu.open .menu-item:nth-child(2),
@@ -289,7 +277,6 @@ body {
 .side-menu.open .menu-item:nth-child(8),
 .side-menu.open .menu-links a:nth-child(8) { animation-delay: 0.45s; }
 
-/* Reset when closed */
 .side-menu:not(.open) .menu-item,
 .side-menu:not(.open) .menu-links a {
   animation: none;
@@ -338,9 +325,7 @@ body {
   color: #fbbf24;
 }
 
-/*  
-   MENU FOOTER - EXACT COPY FROM GALLERY
-  */
+/*  MENU FOOTER  */
 .menu-footer {
   padding-top: 18px;
   border-top: 1px solid rgba(250, 204, 21, 0.2);
@@ -356,18 +341,23 @@ body {
 
 /*  MAIN SCROLL AREA  */
 .home-scroll {
-  position: absolute;
+  position: fixed;
   top: var(--navbar-height);
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  min-height: calc(100vh - var(--navbar-height));
-  overflow-y: auto;
+  height: calc(100vh - var(--navbar-height));
+  overflow-y: scroll;
+  overflow-x: hidden;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .screen {
   min-height: calc(100vh - var(--navbar-height));
   scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 /*  HOME 1  */
@@ -539,7 +529,7 @@ body {
   background: #6d28d9;
 }
 
-/*  HOME 3  */
+/*  HOME 3 - FIXED VERSION  */
 .home3 {
   background: 
     radial-gradient(ellipse 1000px 600px at 30% 20%, rgba(109, 40, 217, 0.12) 0%, transparent 70%),
@@ -552,12 +542,13 @@ body {
   background-position: 0% 0%;
   animation: particleFlow 40s ease-in-out infinite alternate;
   color: #ffffff;
-  padding: 20px;
-  overflow: hidden;
+  padding: 20px 0 0 0;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: calc(100vh - var(--navbar-height));
+  min-height: calc(100vh - var(--navbar-height));
+  height: auto;
   position: relative;
 }
 
@@ -615,7 +606,7 @@ body {
   filter: blur(0.3px);
 }
 
-.home3 > *:not(.coordinator-carousel):not(h2):not(.swipe-hint)::before {
+.home3 > *:not(.coordinator-carousel):not(h2):not(.swipe-hint):not(footer)::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -639,6 +630,22 @@ body {
   mix-blend-mode: screen;
 }
 
+/* Add padding to home3 children (not footer) */
+.home3 > h2,
+.home3 > .coordinator-carousel,
+.home3 > .swipe-hint {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Make footer full width */
+.home3 > footer {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+}
+/* HOME 3 ANIMATIONS */
 @keyframes particleFlow {
   0%, 100% {
     background-position: 0% 0%, 100% 100%, 50% 50%, 0 0, 0 0, 0% 0%;
@@ -708,6 +715,7 @@ body {
   }
 }
 
+/* HOME 3 CONTENT */
 .home3 h2 {
   text-align: center;
   margin: 0;
@@ -715,6 +723,8 @@ body {
   font-weight: 600;
   letter-spacing: 1px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
 }
 
 .coordinator-carousel {
@@ -729,6 +739,8 @@ body {
   flex-shrink: 0;
   flex: 1;
   align-items: center;
+  position: relative;
+  z-index: 3;
 }
 
 .coordinator-carousel::-webkit-scrollbar {
@@ -797,9 +809,11 @@ body {
   text-align: center;
   font-size: 11px;
   color: rgba(255, 255, 255, 0.6);
-  margin: 0;
+  margin: 0 0 40px 0;
   font-style: italic;
   flex-shrink: 0;
+  position: relative;
+  z-index: 3;
 }
 
 /*  EVENT PAGE  */
@@ -960,15 +974,22 @@ body {
   }
 
   .home3 {
-    padding: 10px 15px;
-    height: calc(100vh - var(--navbar-height));
-    justify-content: center;
+    padding: 10px 0 0 0;
+    min-height: auto;
+    height: auto;
+    justify-content: flex-start;
     gap: 15px;
   }
 
   .home3 h2 {
     font-size: 16px;
     margin: 8px 0;
+  }
+
+  .home3 > h2,
+  .home3 > .swipe-hint {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .coordinator-carousel {
@@ -998,7 +1019,11 @@ body {
 
   .swipe-hint {
     font-size: 10px;
-    margin: 5px 0 0 0;
+    margin: 5px 0 30px 0;
+  }
+  
+  .home3 > footer {
+    margin-top: 20px;
   }
 
   .event-page-cmc {
@@ -1070,13 +1095,22 @@ body {
   }
 
   .home3 {
-    padding: 8px 10px;
+    padding: 8px 0 0 0;
+    min-height: auto;
+    height: auto;
+    justify-content: flex-start;
     gap: 12px;
   }
 
   .home3 h2 {
     font-size: 15px;
     margin: 5px 0;
+  }
+
+  .home3 > h2,
+  .home3 > .swipe-hint {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .coordinator-carousel {
@@ -1105,7 +1139,11 @@ body {
 
   .swipe-hint {
     font-size: 9px;
-    margin: 4px 0 0 0;
+    margin: 4px 0 25px 0;
+  }
+  
+  .home3 > footer {
+    margin-top: 15px;
   }
 
   .menu-content,
@@ -1149,12 +1187,18 @@ body {
 
 @media (min-width: 769px) {
   .home3 {
-    padding: 30px 40px;
-    height: calc(100vh - var(--navbar-height));
+    padding: 30px 0 0 0;
+    min-height: calc(100vh - var(--navbar-height));
   }
 
   .home3 h2 {
     font-size: 22px;
+  }
+
+  .home3 > h2,
+  .home3 > .swipe-hint {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   .coordinator-carousel {
@@ -1208,9 +1252,7 @@ body {
   }
 }
 
-/*  
-   ACCESSIBILITY
-  */
+/*  ACCESSIBILITY  */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

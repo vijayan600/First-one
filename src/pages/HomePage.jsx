@@ -2,7 +2,7 @@ import heroImg from "../assets/hero-building.jpg";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 import AnimatedBackground from "../components/AnimatedBackground";
-import Footer from "../components/Footer"; // ADD THIS LINE
+import Footer from "../components/Footer";
 
 // Import gallery images
 import g1 from "../assets/gallery/g1.jpg";
@@ -150,7 +150,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/*   HOME 3   */}
+      {/*   HOME 3 WITH FOOTER INSIDE   */}
       <section className="screen home3">
         {/* FACULTY COORDINATORS */}
         <h2>Faculty Coordinators</h2>
@@ -185,10 +185,10 @@ function HomePage() {
         </div>
 
         <p className="swipe-hint">← Swipe to see more →</p>
-      </section>
 
-      {/* ADD FOOTER HERE */}
-      <Footer />
+        {/* FOOTER INSIDE HOME3 */}
+        <Footer />
+      </section>
     </div>
   );
 }

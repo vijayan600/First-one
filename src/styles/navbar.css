@@ -1,6 +1,4 @@
-/*  
-   MENU OVERLAY
-  */
+/* MENU OVERLAY */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -8,9 +6,7 @@
   z-index: 1998;
 }
 
-/*  
-   MENU DRAWER - PURPLE GRADIENT STYLE
-  */
+/* MENU DRAWER - PURPLE GRADIENT STYLE */
 .menu-drawer {
   position: fixed;
   top: 0;
@@ -137,35 +133,77 @@
   letter-spacing: 0.5px;
 }
 
-/* LOGO CLICKABLE STYLES */
+/* NAVBAR LEFT SECTION */
 .nav-left {
   cursor: pointer !important;
   transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav-left:hover {
   opacity: 0.85;
 }
 
+/* ASSOCIATION TEXT - appears next to SHA logo */
+.nav-association-text {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  animation: fadeSlideIn 0.5s ease-in-out;
+  color: inherit;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* KEC LOGO CENTER - fades in/out smoothly */
 .nav-center {
   cursor: pointer !important;
-  transition: opacity 0.2s ease;
+  transition: all 0.4s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .nav-center:hover {
   opacity: 0.85;
 }
 
+/* LOGO CURSOR */
 .nav-logo,
 .nav-kec {
   cursor: pointer;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
   .menu-drawer {
     width: 85%;
     max-width: 350px;
+  }
+  
+  .nav-association-text {
+    font-size: 12px;
   }
 }
 
@@ -182,5 +220,10 @@
   .menu-links a {
     font-size: 16px;
     padding: 20px 15px;
+  }
+  
+  .nav-association-text {
+    font-size: 10px;
+    letter-spacing: 0.3px;
   }
 }

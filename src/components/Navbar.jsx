@@ -7,31 +7,65 @@ import "../styles/navbar.css";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [showKecLogo, setShowKecLogo] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
   const isHomePage = location.pathname === "/";
 
   useEffect(() => {
+    if (isHomePage) {
+      setShowKecLogo(true);
+    } else {
+      setShowKecLogo(false);
+    }
+
     const handleScroll = () => {
+      if (!isHomePage) return;
+
       const scrollContainer = document.querySelector('.home-scroll');
+      const home1Section = document.querySelector('.home1-desktop');
+      
+      if (!home1Section) return;
+      
+      // Get scroll position
+      let scrollTop = 0;
       if (scrollContainer) {
-        setScrolled(scrollContainer.scrollTop > 50);
+        scrollTop = scrollContainer.scrollTop;
       } else {
-        setScrolled(window.scrollY > 50);
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      }
+      
+      const home1Height = home1Section.offsetHeight;
+      const threshold = home1Height * 0.7;
+      
+      console.log('Scroll:', scrollTop, '| Home1 Height:', home1Height, '| Threshold:', threshold);
+      
+      if (scrollTop > threshold) {
+        console.log('✓ HOME2 REACHED - Hiding KEC, showing text');
+        setShowKecLogo(false);
+      } else {
+        console.log('✓ HOME1 - Showing KEC, hiding text');
+        setShowKecLogo(true);
       }
     };
 
     const scrollContainer = document.querySelector('.home-scroll');
+    
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll);
+      handleScroll();
       return () => scrollContainer.removeEventListener('scroll', handleScroll);
     } else {
       window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      document.addEventListener('scroll', handleScroll);
+      handleScroll();
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        document.removeEventListener('scroll', handleScroll);
+      };
     }
-  }, []);
+  }, [isHomePage, location.pathname]);
 
   const handleNavigation = (path) => {
     navigate(path);
@@ -67,26 +101,29 @@ function Navbar() {
 
   return (
     <>
-      <header className={`main-navbar ${scrolled ? 'scrolled' : ''}`}>
+      <header className="main-navbar">
         <div 
           className="nav-left" 
           onClick={handleLogoClick}
           style={{ cursor: 'pointer', pointerEvents: 'auto' }}
         >
           <img src={currentLogo} className="nav-logo" alt="SHA" />
-          <span className="nav-title">SHA</span>
-          <span className={`nav-association-text ${scrolled ? '' : 'hidden'}`}>
-            Science & Humanities Association
-          </span>
+          {(!showKecLogo || !isHomePage) && (
+            <span className="nav-association-text">
+              S & H Association
+            </span>
+          )}
         </div>
 
-        <div 
-          className={`nav-center ${scrolled ? 'hidden' : ''}`} 
-          onClick={handleLogoClick}
-          style={{ cursor: 'pointer', pointerEvents: 'auto' }}
-        >
-          <img src={kecLogo} className="nav-kec" alt="KEC" />
-        </div>
+        {showKecLogo && isHomePage && (
+          <div 
+            className="nav-center" 
+            onClick={handleLogoClick}
+            style={{ cursor: 'pointer', pointerEvents: 'auto' }}
+          >
+            <img src={kecLogo} className="nav-kec" alt="KEC" />
+          </div>
+        )}
 
         <div className="nav-right">
           <span className="nav-menu" onClick={() => setOpen(true)}>
@@ -131,7 +168,6 @@ function Navbar() {
           >
             MEMBERS
           </a>
-        
         </nav>
 
         <div className="menu-footer">
