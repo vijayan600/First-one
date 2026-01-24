@@ -23,3 +23,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Windows system / shell files
+AppData/
+.bash_history
+.lesshst
+.node_repl_history
+.python_history
+.gitconfig
+

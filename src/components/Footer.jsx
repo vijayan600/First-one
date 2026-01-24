@@ -13,7 +13,7 @@ export default function Footer() {
       name: "Vijay Anand M",
       department: "MTS",
       image: vijayAnand,
-      linkedin: "https://www.linkedin.com/in/vijay-anand-7ba814398/" 
+      linkedin: "https://www.linkedin.com/in/vijay-anand-7ba814398/" // Replace with actual URL
     },
     {
       name: "Vipin G",
